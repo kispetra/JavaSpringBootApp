@@ -1,21 +1,29 @@
-package com.example.task1.Client;
+package com.example.task1.model;
 
-import org.springframework.context.annotation.Primary;
-
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="client")
 
 public class Client {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "client_sequence")
+    @SequenceGenerator(name = "client_sequence", allocationSize = 1)
+    private Long id;
+    @Column(name="firstname")
     private String firstName;
+    @Column(name="lastname")
     private String lastName;
-    private long oib;
+    @Column
+    private String oib;
+    @Column
     private String city;
+    @Column
     private String street;
-    private long zipCode;
+    @Column(name="zipcode")
+    private int zipCode;
+    @Column
     private String country;
 
     public String getFirstName() {
@@ -34,11 +42,11 @@ public class Client {
         this.lastName = lastName;
     }
 
-    public long getOib() {
+    public String getOib() {
         return oib;
     }
 
-    public void setOib(long oib) {
+    public void setOib(String oib) {
         this.oib = oib;
     }
 
@@ -58,11 +66,11 @@ public class Client {
         this.street = street;
     }
 
-    public long getZipCode() {
+    public int getZipCode() {
         return zipCode;
     }
 
-    public void setZipCode(long zipCode) {
+    public void setZipCode(int zipCode) {
         this.zipCode = zipCode;
     }
 
