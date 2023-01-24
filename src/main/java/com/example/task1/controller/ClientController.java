@@ -3,10 +3,7 @@ package com.example.task1.controller;
 import com.example.task1.dto.ResponseBodyAllClients;
 import com.example.task1.model.Client;
 import com.example.task1.service.ClientService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,4 +23,8 @@ public class ClientController {
 
     @GetMapping("/api/customers")
     public List<ResponseBodyAllClients> findAll(){return clientService.fetchAll();}
+    @GetMapping("/api/customers/{id}")
+    public Client fetchClientById(@PathVariable ("id") Long id){
+        return clientService.fetchClientById(id);
+    }
 }
