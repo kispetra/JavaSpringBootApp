@@ -30,4 +30,8 @@ public class ClientController {
     @DeleteMapping("/api/customers/delete/{id}")
     public void deleteById (@PathVariable("id") Long id){
     }
+    @PutMapping("/api/customers/{id}")
+    public Client updateById(@PathVariable("id") Long id, @RequestBody Client client){
+        return clientService.updateById(id,client);
+    }
 }

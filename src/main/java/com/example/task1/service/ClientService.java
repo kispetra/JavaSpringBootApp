@@ -12,4 +12,6 @@ public interface ClientService {
 
     Client fetchClientById(Long id);
     void deleteById(Long id);
+
+    Client updateById(Long id, Client client);
 }
