@@ -6,7 +6,7 @@ import lombok.Setter;
 @Getter @Setter
 public class ResponseBodyAllClients {
 
-
+    public String id;
     public String firstName;
 
     public String lastName;

@@ -52,5 +52,25 @@ public class ClientServiceImplementation implements  ClientService{
         }
         return allClients;
     }
+    @Override
+    public Client fetchClientById(Long id){
+        Client client= clientRepository.findById(id).get();
+        Client fClient= new Client();
+
+        fClient.setId(client.getId());
+        fClient.setFirstName(client.getFirstName());
+        fClient.setLastName(client.getLastName());
+        fClient.setOib(client.getOib());
+        fClient.setCity(client.getCity());
+        fClient.setStreet(client.getStreet());
+        fClient.setZipCode(client.getZipCode());
+        fClient.setCountry(client.getCountry());
+
+        return fClient;
+    }
+     @Override
+    public void deleteById(Long id){
+         clientRepository.deleteById(id);
+    }
 
 }

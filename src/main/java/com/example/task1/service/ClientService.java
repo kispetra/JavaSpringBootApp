@@ -9,4 +9,7 @@ public interface ClientService {
     Client save(Client client);
 
     List<ResponseBodyAllClients> fetchAll();
+
+    Client fetchClientById(Long id);
+    void deleteById(Long id);
 }
