@@ -11,4 +11,5 @@ public interface ClientService {
     List<ResponseBodyAllClients> fetchAll();
 
     Client fetchClientById(Long id);
+    void deleteById(Long id);
 }

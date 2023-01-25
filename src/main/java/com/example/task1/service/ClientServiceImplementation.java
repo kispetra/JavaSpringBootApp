@@ -68,5 +68,9 @@ public class ClientServiceImplementation implements  ClientService{
 
         return fClient;
     }
+     @Override
+    public void deleteById(Long id){
+         clientRepository.deleteById(id);
+    }
 
 }

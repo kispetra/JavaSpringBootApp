@@ -27,4 +27,7 @@ public class ClientController {
     public Client fetchClientById(@PathVariable ("id") Long id){
         return clientService.fetchClientById(id);
     }
+    @DeleteMapping("/api/customers/delete/{id}")
+    public void deleteById (@PathVariable("id") Long id){
+    }
 }
