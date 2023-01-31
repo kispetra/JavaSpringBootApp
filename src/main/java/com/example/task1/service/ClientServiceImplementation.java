@@ -26,6 +26,7 @@ public class ClientServiceImplementation implements  ClientService{
         clientTest.setStreet(client.getStreet());
         clientTest.setZipCode(client.getZipCode());
         clientTest.setCountry(client.getCountry());
+        clientTest.setNumber(client.getNumber());
 
         Client savedClient = clientRepository.save(clientTest);
 
@@ -47,6 +48,7 @@ public class ClientServiceImplementation implements  ClientService{
             responseClient.setStreet(client.getStreet());
             responseClient.setZipCode(client.getZipCode());
             responseClient.setCountry(client.getCountry());
+            responseClient.setNumber(client.getNumber());
 
             allClients.add(responseClient);
         }
@@ -65,6 +67,7 @@ public class ClientServiceImplementation implements  ClientService{
         fClient.setStreet(client.getStreet());
         fClient.setZipCode(client.getZipCode());
         fClient.setCountry(client.getCountry());
+        fClient.setNumber(client.getNumber());
 
         return fClient;
     }
@@ -75,5 +78,21 @@ public class ClientServiceImplementation implements  ClientService{
      }
 
 
+
+    @Override
+    public Client updateById(Long id, Client client){
+        Client fclient = clientRepository.findById(id).get();
+
+        fclient.setFirstName(client.getFirstName());
+        fclient.setLastName(client.getLastName());
+        fclient.setOib(client.getOib());
+        fclient.setCity(client.getCity());
+        fclient.setStreet(client.getStreet());
+        fclient.setZipCode(client.getZipCode());
+        fclient.setCountry(client.getCountry());
+        fclient.setNumber(client.getNumber());
+
+        return clientRepository.save(fclient);
+    }
 
 }
