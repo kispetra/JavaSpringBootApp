@@ -1,17 +1,20 @@
 package com.example.task1.service;
 
-import com.example.task1.dto.ResponseBodyAllClients;
-import com.example.task1.model.Client;
+import com.example.task1.dto.ClientRequestDto;
+import com.example.task1.dto.ClientResponseDto;
 
 import java.util.List;
 
 public interface ClientService {
-    Client save(Client client);
+    ClientResponseDto save(ClientRequestDto clientRequestDto);
 
-    List<ResponseBodyAllClients> fetchAll();
+    List<ClientResponseDto> fetchAll();
 
-    Client fetchClientById(Long id);
+    ClientResponseDto fetchClientById(Long id);
     void deleteById(Long id);
 
-    Client updateById(Long id, Client client);
+    ClientResponseDto updateById(Long id, ClientRequestDto clientRequestDto);
+
+
+
 }

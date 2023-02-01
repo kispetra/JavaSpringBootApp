@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter @Setter
-public class ResponseBodyAllClients {
+public class ClientRequestDto {
 
     public String id;
     public String firstName;
@@ -22,5 +22,4 @@ public class ResponseBodyAllClients {
     public String country;
 
     public String number;
-
 }
