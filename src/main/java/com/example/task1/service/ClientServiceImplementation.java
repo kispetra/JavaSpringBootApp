@@ -1,6 +1,8 @@
 package com.example.task1.service;
 
-import com.example.task1.dto.ResponseBodyAllClients;
+import com.example.task1.dto.ClientRequestDto;
+import com.example.task1.dto.ClientResponseDto;
+import com.example.task1.mapper.ClientDtoMapper;
 import com.example.task1.model.Client;
 import com.example.task1.repository.ClientRepository;
 import org.springframework.stereotype.Service;
@@ -10,67 +12,50 @@ import java.util.List;
 
 @Service
 public class ClientServiceImplementation implements  ClientService{
-    private ClientRepository clientRepository;
-    public ClientServiceImplementation(ClientRepository clientRepository) {
+    private  ClientRepository clientRepository;
+    private ClientDtoMapper clientDtoMapper;
+    public ClientServiceImplementation(ClientRepository clientRepository, ClientDtoMapper clientDtoMapper) {
         this.clientRepository = clientRepository;
+        this.clientDtoMapper=clientDtoMapper;
     }
     @Override
-    public Client save(Client client){
+    public ClientResponseDto save(ClientRequestDto clientRequestDto){
 
-        Client clientTest = new Client();
+        Client client = clientDtoMapper.toEntity(clientRequestDto);
+        Client savedClient = clientRepository.save(client);
+        ClientResponseDto clientResponseDto=clientDtoMapper.toDto(savedClient);
 
-        clientTest.setFirstName(client.getFirstName());
-        clientTest.setLastName(client.getLastName());
-        clientTest.setOib(client.getOib());
-        clientTest.setCity(client.getCity());
-        clientTest.setStreet(client.getStreet());
-        clientTest.setZipCode(client.getZipCode());
-        clientTest.setCountry(client.getCountry());
-
-        Client savedClient = clientRepository.save(clientTest);
-
-        return savedClient;
+        return clientResponseDto;
     }
     @Override
-    public List<ResponseBodyAllClients> fetchAll(){
+    public List<ClientResponseDto> fetchAll(){
 
         List<Client> clients= clientRepository.findAll();
-        List<ResponseBodyAllClients> allClients= new ArrayList<>();
+        List<ClientResponseDto> allClients= new ArrayList<>();
 
         for(Client client: clients){
-            ResponseBodyAllClients responseClient= new ResponseBodyAllClients();
-
-            responseClient.setFirstName(client.getFirstName());
-            responseClient.setLastName(client.getLastName());
-            responseClient.setOib(client.getOib());
-            responseClient.setCity(client.getCity());
-            responseClient.setStreet(client.getStreet());
-            responseClient.setZipCode(client.getZipCode());
-            responseClient.setCountry(client.getCountry());
-
-            allClients.add(responseClient);
+            ClientResponseDto clientResponseDto=clientDtoMapper.toDto(client);
+            allClients.add(clientResponseDto);
         }
         return allClients;
     }
     @Override
-    public Client fetchClientById(Long id){
+    public ClientResponseDto fetchClientById(Long id){
         Client client= clientRepository.findById(id).get();
-        Client fClient= new Client();
-
-        fClient.setId(client.getId());
-        fClient.setFirstName(client.getFirstName());
-        fClient.setLastName(client.getLastName());
-        fClient.setOib(client.getOib());
-        fClient.setCity(client.getCity());
-        fClient.setStreet(client.getStreet());
-        fClient.setZipCode(client.getZipCode());
-        fClient.setCountry(client.getCountry());
-
-        return fClient;
+        ClientResponseDto clientResponseDto = clientDtoMapper.toDto(client);
+        return clientResponseDto;
     }
      @Override
     public void deleteById(Long id){
          clientRepository.deleteById(id);
+    }
+
+    @Override
+    public ClientResponseDto updateById(Long id, ClientRequestDto clientRequestDto){
+        Client client = clientDtoMapper.toEntity(id, clientRequestDto);
+        Client savedClient = clientRepository.save(client);
+        ClientResponseDto clientResponseDto= clientDtoMapper.toDto(savedClient);
+        return clientResponseDto;
     }
 
 }

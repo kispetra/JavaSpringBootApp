@@ -1,7 +1,7 @@
 package com.example.task1.controller;
 
-import com.example.task1.dto.ResponseBodyAllClients;
-import com.example.task1.model.Client;
+import com.example.task1.dto.ClientRequestDto;
+import com.example.task1.dto.ClientResponseDto;
 import com.example.task1.service.ClientService;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,17 +17,21 @@ public class ClientController {
     }
 
     @PostMapping("/api/customers")
-    public Client save(@RequestBody Client client){
-            return clientService.save(client);
-    }
+    public ClientResponseDto save(@RequestBody ClientRequestDto clientRequestDto){
+            return clientService.save(clientRequestDto);}
 
     @GetMapping("/api/customers")
-    public List<ResponseBodyAllClients> findAll(){return clientService.fetchAll();}
+    public List<ClientResponseDto> findAll(){return clientService.fetchAll();}
+
     @GetMapping("/api/customers/{id}")
-    public Client fetchClientById(@PathVariable ("id") Long id){
-        return clientService.fetchClientById(id);
-    }
+    public ClientResponseDto fetchClientById(@PathVariable ("id") Long id){
+        return clientService.fetchClientById(id);}
+
     @DeleteMapping("/api/customers/delete/{id}")
-    public void deleteById (@PathVariable("id") Long id){
-    }
+    public void deleteById (@PathVariable("id") Long id) {
+        clientService.deleteById(id);}
+
+    @PutMapping("/api/customers/{id}")
+    public ClientResponseDto updateById(@PathVariable("id") Long id, @RequestBody ClientRequestDto clientRequestDto){
+        return clientService.updateById(id,clientRequestDto);}
 }
