@@ -2,13 +2,13 @@ package com.example.task1.service;
 
 import com.example.task1.dto.ClientRequestDto;
 import com.example.task1.dto.ClientResponseDto;
-
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface ClientService {
     ClientResponseDto save(ClientRequestDto clientRequestDto);
 
-    List<ClientResponseDto> fetchAll();
+    Page<ClientResponseDto> fetchAll(String firstName, String lastName, Pageable pageable);
 
     ClientResponseDto fetchClientById(Long id);
     void deleteById(Long id);

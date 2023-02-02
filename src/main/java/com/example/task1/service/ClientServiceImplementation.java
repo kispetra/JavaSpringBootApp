@@ -5,10 +5,9 @@ import com.example.task1.dto.ClientResponseDto;
 import com.example.task1.mapper.ClientDtoMapper;
 import com.example.task1.model.Client;
 import com.example.task1.repository.ClientRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class ClientServiceImplementation implements  ClientService{
@@ -28,17 +27,13 @@ public class ClientServiceImplementation implements  ClientService{
         return clientResponseDto;
     }
     @Override
-    public List<ClientResponseDto> fetchAll(){
+    public Page<ClientResponseDto> fetchAll(String firstName, String lastName, Pageable pageable){
 
-        List<Client> clients= clientRepository.findAll();
-        List<ClientResponseDto> allClients= new ArrayList<>();
-
-        for(Client client: clients){
-            ClientResponseDto clientResponseDto=clientDtoMapper.toDto(client);
-            allClients.add(clientResponseDto);
+        return clientRepository.findingByNameOrLastNameASC(firstName,lastName, pageable)
+                .map(clientDtoMapper:: toDto);
         }
-        return allClients;
-    }
+
+
     @Override
     public ClientResponseDto fetchClientById(Long id){
         Client client= clientRepository.findById(id).get();
