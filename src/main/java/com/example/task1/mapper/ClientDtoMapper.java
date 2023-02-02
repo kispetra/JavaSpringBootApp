@@ -26,7 +26,7 @@ public class ClientDtoMapper {
         clientResponseDto.setStreet(client.getStreet());
         clientResponseDto.setZipCode(client.getZipCode());
         clientResponseDto.setCountry(client.getCountry());
-        clientResponseDto.setNumber(client.getNumber());
+        clientResponseDto.setAdressNumber(client.getAdressNumber());
 
         return clientResponseDto;
     }
@@ -42,7 +42,7 @@ public class ClientDtoMapper {
         client.setStreet(clientRequestDto.getStreet());
         client.setZipCode(clientRequestDto.getZipCode());
         client.setCountry(clientRequestDto.getCountry());
-        client.setNumber(clientRequestDto.getNumber());
+        client.setAdressNumber(clientRequestDto.getAdressNumber());
 
         return client;
     }
@@ -58,7 +58,7 @@ public class ClientDtoMapper {
         client.setStreet(clientRequestDto.getStreet());
         client.setZipCode(clientRequestDto.getZipCode());
         client.setCountry(clientRequestDto.getCountry());
-        client.setNumber(clientRequestDto.getNumber());
+        client.setAdressNumber(clientRequestDto.getAdressNumber());
 
         return client;
     }
