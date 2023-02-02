@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="client")
@@ -30,7 +31,9 @@ public class Client {
     @Column
     private String country;
     @Column
-    private String number;
-
+    private String adressNumber;
+    @Column
+    @OneToMany
+    private List<Car> cars;
 
 }
