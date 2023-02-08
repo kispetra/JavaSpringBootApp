@@ -19,9 +19,6 @@ public class CarServiceImpl implements CarService{
     private final CarRepository carRepository;
     private final CarDtoMapper carDtoMapper;
     private final ClientDtoMapper clientDtoMapper;
-
-
-
     @Override
     public ClientResponseDto save(Long id, CarRequestDto carRequestDto){
 
@@ -34,7 +31,12 @@ public class CarServiceImpl implements CarService{
         ClientResponseDto clientResponseDto= clientDtoMapper.toDto(client);
 
         return clientResponseDto;
-
+    }
+    public void deleteById(Long clientId, Long carId){
+        Car car = carRepository.findById(carId).orElse(null);
+        Client client=clientRepository.findById(clientId).orElse(null);
+        carRepository.delete(car);
+        client.getCars().remove(car);
     }
 
 }
