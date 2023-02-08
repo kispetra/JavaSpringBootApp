@@ -39,5 +39,15 @@ public class CarDtoMapper {
 
         return car;
     }
+    public Car toEntity(Long carId, CarRequestDto carRequestDto){
+
+        Car car= carRepository.findById(carId).orElse(null);
+        CarType carType = CarType.valueOf(carRequestDto.getCarType());
+        car.setCarType(carType);
+        car.setYear(carRequestDto.getYear());
+        car.setRegistrationMark(carRequestDto.getRegistrationMark());
+        car.setColor(carRequestDto.getColor());
+        return car;
+    }
 
 }

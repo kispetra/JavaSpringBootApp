@@ -1,6 +1,7 @@
 package com.example.task1.service;
 
 import com.example.task1.dto.CarRequestDto;
+import com.example.task1.dto.CarResponseDto;
 import com.example.task1.dto.ClientResponseDto;
 import com.example.task1.mapper.CarDtoMapper;
 import com.example.task1.mapper.ClientDtoMapper;
@@ -37,6 +38,19 @@ public class CarServiceImpl implements CarService{
         Client client=clientRepository.findById(clientId).orElse(null);
         carRepository.delete(car);
         client.getCars().remove(car);
+    }
+    public CarResponseDto updateById(Long clientId, Long carId, CarRequestDto carRequestDto){
+        Client client= clientRepository.findById(clientId).orElse(null);
+        Car car= carRepository.findById(carId).orElse(null);
+        client.getCars().remove(car);
+
+        car= carDtoMapper.toEntity(carId,carRequestDto);
+        Car savedCar=carRepository.save(car);
+        client.getCars().add(savedCar);
+
+        CarResponseDto carResponseDto= carDtoMapper.toDto(savedCar);
+        return  carResponseDto;
+
     }
 
 }
