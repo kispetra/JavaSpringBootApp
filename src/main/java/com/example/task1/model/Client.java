@@ -1,5 +1,6 @@
 package com.example.task1.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -31,9 +32,10 @@ public class Client {
     @Column
     private String country;
     @Column
-    private String adressNumber;
-    @Column
-    @OneToMany
+    private String number;
+
+    @OneToMany(mappedBy = "client")
+    @JsonManagedReference
     private List<Car> cars;
 
 }

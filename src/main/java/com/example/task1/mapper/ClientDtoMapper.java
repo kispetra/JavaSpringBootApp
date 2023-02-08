@@ -1,20 +1,24 @@
 package com.example.task1.mapper;
 
+import com.example.task1.dto.CarResponseDto;
 import com.example.task1.dto.ClientRequestDto;
 import com.example.task1.dto.ClientResponseDto;
+import com.example.task1.model.Car;
 import com.example.task1.model.Client;
 import com.example.task1.repository.ClientRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Service
+@RequiredArgsConstructor
 public class ClientDtoMapper {
-    private  ClientRepository clientRepository;
+    private final ClientRepository clientRepository;
+    public final CarDtoMapper carDtoMapper;
 
-    private ClientDtoMapper(ClientRepository clientRepository){
-
-        this.clientRepository=clientRepository;
-    }
     public ClientResponseDto toDto(Client client){
 
         ClientResponseDto clientResponseDto= new ClientResponseDto();
@@ -26,7 +30,14 @@ public class ClientDtoMapper {
         clientResponseDto.setStreet(client.getStreet());
         clientResponseDto.setZipCode(client.getZipCode());
         clientResponseDto.setCountry(client.getCountry());
-        clientResponseDto.setAdressNumber(client.getAdressNumber());
+        clientResponseDto.setNumber(client.getNumber());
+
+        List<CarResponseDto> cars = new ArrayList<>();
+        for(Car car : client.getCars()){
+            CarResponseDto carResponseDto = carDtoMapper.toDto(car);
+            cars.add(carResponseDto);
+        }
+        clientResponseDto.setCars(cars);
 
         return clientResponseDto;
     }
@@ -42,7 +53,7 @@ public class ClientDtoMapper {
         client.setStreet(clientRequestDto.getStreet());
         client.setZipCode(clientRequestDto.getZipCode());
         client.setCountry(clientRequestDto.getCountry());
-        client.setAdressNumber(clientRequestDto.getAdressNumber());
+        client.setNumber(clientRequestDto.getNumber());
 
         return client;
     }
@@ -58,7 +69,7 @@ public class ClientDtoMapper {
         client.setStreet(clientRequestDto.getStreet());
         client.setZipCode(clientRequestDto.getZipCode());
         client.setCountry(clientRequestDto.getCountry());
-        client.setAdressNumber(clientRequestDto.getAdressNumber());
+        client.setNumber(clientRequestDto.getNumber());
 
         return client;
     }

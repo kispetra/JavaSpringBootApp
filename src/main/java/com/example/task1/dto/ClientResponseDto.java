@@ -15,7 +15,7 @@ public class ClientResponseDto {
     public String street;
     public int zipCode;
     public String country;
-    public String adressNumber;
+    public String number;
     public List<CarResponseDto> cars;
 
 }

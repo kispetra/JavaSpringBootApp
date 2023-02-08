@@ -1,5 +1,6 @@
 package com.example.task1.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,6 +16,7 @@ public class Car {
     @SequenceGenerator(name = "car_sequence", allocationSize = 1)
     private Long id;
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name="client_id")
     private Client client;
     @Enumerated

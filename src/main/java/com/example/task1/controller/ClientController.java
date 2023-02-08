@@ -5,24 +5,18 @@ import com.example.task1.dto.ClientResponseDto;
 import com.example.task1.mapper.ClientDtoMapper;
 import com.example.task1.repository.ClientRepository;
 import com.example.task1.service.ClientService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 
 @RestController
+@RequiredArgsConstructor
 public class ClientController {
-    private ClientService clientService;
+    private final ClientService clientService;
     private final ClientRepository clientRepository;
-
-
-    public ClientController(ClientService clientService,
-                            ClientRepository clientRepository,
-                            ClientDtoMapper clientDtoMapper) {
-        this.clientService = clientService;
-        this.clientRepository = clientRepository;
-
-    }
+    private final ClientDtoMapper clientDtoMapper;
 
     @PostMapping("/api/customers")
     public ClientResponseDto save(@RequestBody ClientRequestDto clientRequestDto){
@@ -48,4 +42,5 @@ public class ClientController {
     @PutMapping("/api/customers/{id}")
     public ClientResponseDto updateById(@PathVariable("id") Long id, @RequestBody ClientRequestDto clientRequestDto){
         return clientService.updateById(id,clientRequestDto);}
+
 }

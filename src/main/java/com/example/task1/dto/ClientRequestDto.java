@@ -17,6 +17,6 @@ public class ClientRequestDto {
     public int zipCode;
     public String country;
 
-    public String adressNumber;
+    public String number;
     public List<Car> cars;
 }
