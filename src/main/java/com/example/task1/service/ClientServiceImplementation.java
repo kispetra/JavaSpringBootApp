@@ -5,18 +5,16 @@ import com.example.task1.dto.ClientResponseDto;
 import com.example.task1.mapper.ClientDtoMapper;
 import com.example.task1.model.Client;
 import com.example.task1.repository.ClientRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class ClientServiceImplementation implements  ClientService{
-    private  ClientRepository clientRepository;
-    private ClientDtoMapper clientDtoMapper;
-    public ClientServiceImplementation(ClientRepository clientRepository, ClientDtoMapper clientDtoMapper) {
-        this.clientRepository = clientRepository;
-        this.clientDtoMapper=clientDtoMapper;
-    }
+    private final ClientRepository clientRepository;
+    private final ClientDtoMapper clientDtoMapper;
     @Override
     public ClientResponseDto save(ClientRequestDto clientRequestDto){
 

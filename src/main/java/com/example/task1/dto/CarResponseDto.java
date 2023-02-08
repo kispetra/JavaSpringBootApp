@@ -1,11 +1,14 @@
 package com.example.task1.dto;
 
+import com.example.task1.model.CarType;
+import lombok.Getter;
+import lombok.Setter;
+@Getter @Setter
 public class CarResponseDto {
-
-
-    public String carType;
+    private Long clientId;
+    public CarType cartype;
     public int year;
-    public String registrationMark;
+    public String registrationmark;
     public String color;
 
 }
