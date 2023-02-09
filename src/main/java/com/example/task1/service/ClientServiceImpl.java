@@ -10,9 +10,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
+
 @Service
 @RequiredArgsConstructor
-public class ClientServiceImplementation implements  ClientService{
+public class ClientServiceImpl implements  ClientService{
     private final ClientRepository clientRepository;
     private final ClientDtoMapper clientDtoMapper;
     @Override
@@ -34,7 +36,7 @@ public class ClientServiceImplementation implements  ClientService{
 
     @Override
     public ClientResponseDto fetchClientById(Long id){
-        Client client= clientRepository.findById(id).get();
+        Client client= clientRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("client not found"));
         ClientResponseDto clientResponseDto = clientDtoMapper.toDto(client);
         return clientResponseDto;
     }
