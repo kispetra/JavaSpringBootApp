@@ -8,6 +8,7 @@ import java.util.List;
 
 @Getter @Setter
 public class ClientRequestDto {
+    // TODO ne treba id u requestu
     public String id;
     public String firstName;
     public String lastName;
@@ -16,7 +17,8 @@ public class ClientRequestDto {
     public String street;
     public int zipCode;
     public String country;
-
     public String number;
+
+    // TODO cars ne smije biti ovdje, nigdje ne piše da trebaš slati listu auta u requestu
     public List<Car> cars;
 }

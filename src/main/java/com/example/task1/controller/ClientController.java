@@ -15,7 +15,11 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class ClientController {
     private final ClientService clientService;
+
+    // TODO izbrisati
     private final ClientRepository clientRepository;
+
+    // TODO izbrisati
     private final ClientDtoMapper clientDtoMapper;
 
     @PostMapping("/api/customers")
