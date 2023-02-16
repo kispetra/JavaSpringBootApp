@@ -5,14 +5,13 @@ import lombok.Setter;
 
 @Getter @Setter
 public class ClientRequestDto {
-    public String firstName;
-    public String lastName;
-    public String oib;
-    public String city;
-    public String street;
-    public int zipCode;
-    public String country;
-
-    public String number;
+    private String firstName;
+    private String lastName;
+    private String oib;
+    private String city;
+    private String street;
+    private int zipCode;
+    private String country;
+    private String number;
 
 }
