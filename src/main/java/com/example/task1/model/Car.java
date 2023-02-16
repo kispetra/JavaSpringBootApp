@@ -32,6 +32,6 @@ public class Car {
     private String color;
     @OneToMany(mappedBy = "car")
     @JsonManagedReference
-    private List<CarService> carServiceList;
+    private List<CarService> carServices;
 
 }
