@@ -7,15 +7,15 @@ import java.util.List;
 
 @Getter @Setter
 public class ClientResponseDto {
-    public String id;
-    public String firstName;
-    public String lastName;
-    public String oib;
-    public String city;
-    public String street;
-    public int zipCode;
-    public String country;
-    public String number;
-    public List<CarResponseDto> cars;
+    private String id;
+    private String firstName;
+    private String lastName;
+    private String oib;
+    private String city;
+    private String street;
+    private int zipCode;
+    private String country;
+    private String number;
+    private List<CarResponseDto> cars;
 
 }

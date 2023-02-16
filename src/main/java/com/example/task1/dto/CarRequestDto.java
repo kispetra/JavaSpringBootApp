@@ -7,7 +7,7 @@ import lombok.Setter;
 
 public class CarRequestDto {
     public String carType;
-    public int year;
+    public Integer year;
     public String registrationMark;
     public String color;
 }

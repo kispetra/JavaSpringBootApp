@@ -7,7 +7,7 @@ import lombok.Setter;
 public class CarResponseDto {
     private Long clientId;
     public CarType cartype;
-    public int year;
+    public Integer year;
     public String registrationmark;
     public String color;
 
