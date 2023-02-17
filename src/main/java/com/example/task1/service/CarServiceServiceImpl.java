@@ -1,5 +1,6 @@
 package com.example.task1.service;
 import com.example.task1.dto.CarServiceRequestDto;
+import com.example.task1.dto.CarServiceResponseDto;
 import com.example.task1.dto.ClientResponseDto;
 import com.example.task1.mapper.CarServiceDtoMapper;
 import com.example.task1.mapper.ClientDtoMapper;
@@ -42,5 +43,16 @@ public class CarServiceServiceImpl implements CarServiceService{
 
         carServiceRepository.delete(carService);
         car.getCarServices().remove(carService);
+    }
+    @Override
+    public CarServiceResponseDto updateById(Long clientId, Long carId, Long carServiceId, CarServiceRequestDto carServiceRequestDto){
+        Client client= clientRepository.findById(clientId).orElseThrow(()-> new EntityNotFoundException("Client not found."));
+        Car car= carRepository.findById(carId).orElseThrow(()-> new EntityNotFoundException("Car not found."));
+        CarService carService=carServiceRepository.findById(carServiceId).orElseThrow(()-> new EntityNotFoundException("Car service not found."));
+
+        CarService updatedCarService=carServiceDtoMapper.toEntity(carId, carServiceId, carServiceRequestDto);
+        CarService savedCarService= carServiceRepository.save(updatedCarService);
+
+        return carServiceDtoMapper.toDto(savedCarService);
     }
 }
