@@ -34,4 +34,13 @@ public class CarServiceServiceImpl implements CarServiceService{
         ClientResponseDto clientResponseDto= clientDtoMapper.toDto(client);
         return clientResponseDto;
     }
+    @Override
+    public void delete(Long clientId, Long carId, Long carServiceId){
+        Client client= clientRepository.findById(clientId).orElseThrow(()-> new EntityNotFoundException("Client not found."));
+        Car car= carRepository.findById(carId).orElseThrow(()-> new EntityNotFoundException("Car not found."));
+        CarService carService=carServiceRepository.findById(carServiceId).orElseThrow(()-> new EntityNotFoundException("Car service not found."));
+
+        carServiceRepository.delete(carService);
+        car.getCarServices().remove(carService);
+    }
 }
