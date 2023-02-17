@@ -27,7 +27,7 @@ public class CarService {
     private String workerLastName;
     @Column(name="workdescription")
     private String workDescription;
-    @Column
+    @Column(name="price")
     private Float price;
     @Column(name="ispaid")
     private Boolean isPaid;
