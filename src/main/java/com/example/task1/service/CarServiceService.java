@@ -5,4 +5,5 @@ import com.example.task1.dto.ClientResponseDto;
 
 public interface CarServiceService {
     ClientResponseDto save(Long clientId, Long carId, CarServiceRequestDto carServiceRequestDto);
+    void delete(Long clientId, Long carId, Long carServiceId);
 }
