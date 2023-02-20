@@ -1,8 +1,6 @@
 package com.example.task1.controller;
 
-import com.example.task1.dto.CarServiceRequestDto;
-import com.example.task1.dto.CarServiceResponseDto;
-import com.example.task1.dto.ClientResponseDto;
+import com.example.task1.dto.*;
 import com.example.task1.service.CarServiceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +22,13 @@ public class CarServiceController {
     public CarServiceResponseDto update(@PathVariable Long clientId,@PathVariable Long carId,
                                         @PathVariable Long carServiceId, @RequestBody CarServiceRequestDto carServiceRequestDto){
         return carServiceService.updateById(clientId, carId, carServiceId, carServiceRequestDto);
+    }
+    @PutMapping("/api/customers/{clientId}/cars/{carId}/car-services/{carServiceId}/is-paid")
+    public IsPaidCarServiceResponseDto updateIsPaid(@PathVariable Long clientId, @PathVariable Long carId,
+                                                    @PathVariable Long carServiceId,
+                                                    @RequestBody IsPaidCarServiceRequestDto isPaidCarServiceRequestDto){
+        return carServiceService.updateIsPaid(clientId, carId, carServiceId, isPaidCarServiceRequestDto);
+
     }
 
 }
